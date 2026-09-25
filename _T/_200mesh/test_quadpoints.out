@@ -1,0 +1,51 @@
+ vert_coords_patch: 
+              (0, 0, 0) =    -5.7735   -5.7735    5.7735
+              (1, 0, 0) =     5.7735   -5.7735    5.7735
+              (0, 1, 0) =    -5.7735    5.7735    5.7735
+              (1, 1, 0) =     5.7735    5.7735    5.7735
+              (0, 0, 1) =    -6.3509   -6.3509    6.3509
+              (1, 0, 1) =     6.3509   -6.3509    6.3509
+              (0, 1, 1) =    -6.3509    6.3509    6.3509
+              (1, 1, 1) =     6.3509    6.3509    6.3509
+  
+ xb_quadpts_patch, face 0 (-x), Points in sequence: -y -> +y and then -z to +z
+                  Point :    -7.4246    0.0000    7.4246
+                  Point :    -6.0622    6.0622    6.0622
+                  Point :    -6.0622   -6.0622    6.0622
+                  Point :    -7.7782    0.0000    7.7782
+                  Point :    -7.0711    0.0000    7.0711
+  
+ xb_quadpts_patch, face 1 (+x), Points in sequence: -y -> +y and then -z to +z
+                  Point :     7.4246    0.0000    7.4246
+                  Point :     6.0622    6.0622    6.0622
+                  Point :     6.0622   -6.0622    6.0622
+                  Point :     7.7782    0.0000    7.7782
+                  Point :     7.0711    0.0000    7.0711
+  
+ yb_quadpts_patch, face 0 (-y), Points in sequence: -z -> +z and then -x to +x
+                  Point :     0.0000   -7.4246    7.4246
+                  Point :     0.0000   -7.7782    7.7782
+                  Point :     0.0000   -7.0711    7.0711
+                  Point :     6.0622   -6.0622    6.0622
+                  Point :    -6.0622   -6.0622    6.0622
+  
+ yb_quadpts_patch, face 1 (+y), Points in sequence: -z -> +z and then -x to +x
+                  Point :     0.0000    7.4246    7.4246
+                  Point :     0.0000    7.7782    7.7782
+                  Point :     0.0000    7.0711    7.0711
+                  Point :     6.0622    6.0622    6.0622
+                  Point :    -6.0622    6.0622    6.0622
+  
+ zb_quadpts_patch, face 0 (-z), Points in sequence: -x -> +x and then -y to +y
+                  Point :     0.0000    0.0000    8.3686
+                  Point :     7.0711    0.0000    7.0711
+                  Point :    -7.0711    0.0000    7.0711
+                  Point :     0.0000    7.0711    7.0711
+                  Point :     0.0000   -7.0711    7.0711
+  
+ zb_quadpts_patch, face 1 (+z), Points in sequence: -x -> +x and then -y to +y
+                  Point :     0.0000    0.0000    9.2055
+                  Point :     7.7782    0.0000    7.7782
+                  Point :    -7.7782    0.0000    7.7782
+                  Point :     0.0000    7.7782    7.7782
+                  Point :     0.0000   -7.7782    7.7782
