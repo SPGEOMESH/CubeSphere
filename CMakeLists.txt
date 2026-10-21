@@ -16,18 +16,23 @@ set(PROJECT_VERSION_MONTH "August")
 set(PROJECT_VERSION_YEAR "2026")
 set(PROJECT_WORKING_RDIRS "_T" "_I")
 
+# Use this for library (_L tree) compilation.
 set(CUSTOM_FILELIST
         # include this if building library to keep CMake from emitting spurious error messages.
         _L/Lmain.f
 #    _L/001addmul/Laddmul.f
 #    _L/002vert_coords_patch/Lvert_coords_patch.f
     _L/200mesh/Lmesh.f
+    _L/200mesh/Lproblem.f
 )
 
-
-include($ENV{DGCALC_HOME}/src/dgcalc.1.cmake)
+execute_process(COMMAND dgcalc source 1 OUTPUT_VARIABLE SOURCE1_CODE)
+cmake_language(EVAL CODE "${SOURCE1_CODE}")
 set(PROJECT_NAME "${PROJECT_FAMILY_NAME}${PROJECT_VERSION}${PROJECT_VERSION_NAME}_${PROJECT_VERSION_MONTH}${PROJECT_VERSION_YEAR}")
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION} LANGUAGES ${PROJECT_LANGUAGES})
-include($ENV{DGCALC_HOME}/src/dgcalc.2.cmake)
+execute_process(COMMAND dgcalc source 2 OUTPUT_VARIABLE SOURCE2_CODE)
+cmake_language(EVAL CODE "${SOURCE2_CODE}")
+
+
 
 

@@ -1046,7 +1046,12 @@
 
 
 
+
+
+
 ! START INITIALIZING GEOMETRY AND PROBLEM  ;  START INITIALIZING GEOMETRY AND PROBLEM
+
+
 
 
 
@@ -1502,9 +1507,18 @@
 
 
 
+
+
+
+
 ! ----------------------------------------------------------------------
 ! START READING IN RESTART DUMP ; START READING IN RESTART DUMP ;
 ! ----------------------------------------------------------------------
+
+
+
+
+
 
 ! Read in a prior dump file if one has been written out. Increment dump
 ! file name.
@@ -1654,6 +1668,9 @@
 ! END READING IN RESTART DUMP ; END READING IN RESTART DUMP ;
 ! ----------------------------------------------------------------------
 ! ----------------------------------------------------------------------
+
+
+
 
 
 
@@ -2179,6 +2196,8 @@
       Byf ( :, :, :, 1) = Byf_skinny ( :, :, :)
       Bzf ( :, :, :, 1) = Bzf_skinny ( :, :, :)
 !$acc end kernels
+
+
 
 
 
@@ -2843,9 +2862,13 @@
 
 
 
+
 ! ----------------------------------------------------------------------
 ! -STEP- 4) Evaluate a new timestep for this patch. Store "dtcurp1" so that we can
 ! globally reduce it after this loop is done on ALL processors.
+
+
+
 
 
 
@@ -2905,10 +2928,13 @@
 
 
 
+
+
 ! ----------------------------------------------------------------------
 ! -STEP- 5) Evolve the internal energy for the cooling function source term;
 ! using the operator-splitting. This is a stiff source term. It is evolved
 ! using the adaptive-stepsize RK scheme.
+
 
 
 
@@ -2961,11 +2987,14 @@
 
 
 
+
+
 ! ----------------------------------------------------------------------
 ! -STEP- 6) "U, entropygr, Bxf, Byf, Bzf" have been almost perfectly updated on GPU.
 ! So, copy them back to CPU. The only fluxes we need are the ones that fill in
 ! the faces for the defect correction. Therefore, we have an extra subroutine
 ! on the GPU that copies "Flux_snd_r, l, u, d, t, b_patch" back to CPU.
+
 
 
 
@@ -3104,7 +3133,12 @@
 
 
 
+
+
+
 ! -STEP- 7) Now make a reduction across all processors for "V_min_reduce, V_max_reduce".
+
+
 
 
 
@@ -3242,6 +3276,15 @@
       END IF
 #endif
 
+
+
+
+
+
+
+
+
+
 ! ----------------------------------------------------------------------
 ! ----------------------------------------------------------------------
 ! -STEP- 9) The defects have been built in the previous step.
@@ -3249,6 +3292,20 @@
 ! The defects have to be stored as if they are fluxes, which has already
 ! been done in the previous step. The defects only affect the boundary zones.
 ! This is such a low cost operation that it can be done entirely on CPU.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ! ----------------------------------------------------------------------
 ! BEGIN LOOP OVER PATCHES ON PROCESSOR   ;   BEGIN LOOP OVER PATCHES ON PROCESSOR
@@ -3415,9 +3472,39 @@
 ! ----------------------------------------------------------------------
 ! END LOOP OVER PATCHES ON PROCESSOR   ;   END LOOP OVER PATCHES ON PROCESSOR
 ! ----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ! ----------------------------------------------------------------------
 ! -STEP- 10) Obtain globally minimized "dtcurp1_reduce" and broadcast it to
 ! all "dtcurp1". Also update "time".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ! Let all patches synchronize before timestep reduction.
 ! That way, they have all updated their "dtcurp1_reduce".
@@ -3483,6 +3570,23 @@
 ! ----------------------------------------------------------------------
 ! END TIMESTEP LOOP  ;  END TIMESTEP LOOP  ;  END TIMESTEP LOOP
 ! ----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ! ----------------------------------------------------------------------
 ! We created a lot of temporary arrays that are used for processing a timestep
 ! on the GPU. Since we are at the end of the timestep, we can get rid of
